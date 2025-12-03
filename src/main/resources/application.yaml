@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: portfolio
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db
+    username: user
+    password: password
+
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 20000
+  sql:
+    init:
+      mode: always
