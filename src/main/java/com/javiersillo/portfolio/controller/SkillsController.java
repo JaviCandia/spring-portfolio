@@ -3,9 +3,7 @@ package com.javiersillo.portfolio.controller;
 import com.javiersillo.portfolio.model.Skill;
 import com.javiersillo.portfolio.service.SkillsService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -42,9 +40,19 @@ public class SkillsController {
         return new ResponseEntity<>(newSkill, HttpStatus.CREATED);
     }
 
-    // update
+    @PutMapping("/{id}")
+    public Skill update(@PathVariable Long id, @RequestBody Skill skill) {
+        skill.setId(id);
+        return skillsService.save(skill);
+    }
 
-    // delete
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        skillsService.deleteById(id);
+    }
 
-    // getByPersonalInfoId
+    @GetMapping("/personal-info/{id}")
+    public List<Skill> getByPersonalInfoId(@PathVariable Long id) {
+        return skillsService.findByPersonalInfoId(id);
+    }
 }
