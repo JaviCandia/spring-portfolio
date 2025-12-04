@@ -4,8 +4,8 @@ import com.javiersillo.portfolio.model.Education;
 import com.javiersillo.portfolio.service.EducationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*; // Importa RestController y ResponseStatus
-import org.springframework.web.server.ResponseStatusException; // Para lanzar errores HTTP
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
