@@ -6,15 +6,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface EducationRepository {
-    public interface IEducationRepository {
-        Education save(Education education);
+    Education save(Education education);
 
-        Optional<Education> findById(Long id);
+    Optional<Education> findById(Long id);
 
-        List<Education> findAll();
+    List<Education> findAll();
 
-        void deleteById(Long id);
+    void deleteById(Long id);
 
-        List<Education> findByPersonalInfoId(Long personalInfoId);
-    }
+    List<Education> findByPersonalInfoId(Long personalInfoId);
 }

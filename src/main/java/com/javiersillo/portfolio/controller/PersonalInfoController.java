@@ -20,7 +20,7 @@ public class PersonalInfoController {
         this.personalInfoService = personalInfoService;
     }
 
-    @GetMapping("all")
+    @GetMapping
     public List<PersonalInfo> getAll() {
         return personalInfoService.findAll();
     }

@@ -5,35 +5,27 @@ import com.javiersillo.portfolio.service.SkillsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/skills")
 public class SkillsController {
     private final SkillsService skillsService;
 
-    @GetMapping("all")
+    @GetMapping
     public List<Skill> getAll() {
         return skillsService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Skill getById(@PathVariable Long id) {
-        Optional<Skill> skill = skillsService.findById(id);
-        if (skill.isPresent()) {
-            return skill.get();
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Personal info not found in id: " + id);
-        }
+    public Optional<Skill> getById(@PathVariable Long id) {
+        return skillsService.findById(id);
     }
 
-
+    // @ResponseStatus(HttpStatus.CREATED) esto evitaría tener que usear ResponseEntity<Skill>
     @PostMapping
     public ResponseEntity<Skill> create(@RequestBody Skill skill) {
         Skill newSkill = skillsService.save(skill);
