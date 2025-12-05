@@ -28,7 +28,7 @@ public class EducationController {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED) // <--- Perfecto, mantén esto
+    @ResponseStatus(HttpStatus.CREATED)
     public Education create(@RequestBody Education education) {
         return educationService.save(education);
     }

@@ -25,20 +25,21 @@ public class SkillsController {
         return skillsService.findById(id);
     }
 
-    // @ResponseStatus(HttpStatus.CREATED) esto evitaría tener que usear ResponseEntity<Skill>
     @PostMapping
-    public ResponseEntity<Skill> create(@RequestBody Skill skill) {
-        Skill newSkill = skillsService.save(skill);
-        return new ResponseEntity<>(newSkill, HttpStatus.CREATED);
+    @ResponseStatus(HttpStatus.CREATED)
+    public Skill create(@RequestBody Skill education) {
+        return skillsService.save(education);
     }
 
     @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Skill update(@PathVariable Long id, @RequestBody Skill skill) {
         skill.setId(id);
         return skillsService.save(skill);
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         skillsService.deleteById(id);
     }

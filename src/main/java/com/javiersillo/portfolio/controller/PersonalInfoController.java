@@ -3,7 +3,6 @@ package com.javiersillo.portfolio.controller;
 import com.javiersillo.portfolio.model.PersonalInfo;
 import com.javiersillo.portfolio.service.PersonalInfoService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -36,12 +35,21 @@ public class PersonalInfoController {
     }
 
     @PostMapping
-    public ResponseEntity<PersonalInfo> create(@RequestBody PersonalInfo personalInfo) {
-        PersonalInfo newPersonalInfo = personalInfoService.save(personalInfo);
-        return new ResponseEntity<>(newPersonalInfo, HttpStatus.CREATED);
+    @ResponseStatus(HttpStatus.CREATED)
+    public PersonalInfo create(@RequestBody PersonalInfo personalInfo) {
+        return personalInfoService.save(personalInfo);
     }
 
-    // update
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public PersonalInfo update(@PathVariable Long id, @RequestBody PersonalInfo personalInfo) {
+        personalInfo.setId(id);
+        return personalInfoService.save(personalInfo);
+    }
 
-    // delete
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id) {
+        personalInfoService.deleteById(id);
+    }
 }

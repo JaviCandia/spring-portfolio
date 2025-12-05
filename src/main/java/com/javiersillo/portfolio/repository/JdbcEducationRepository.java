@@ -19,7 +19,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class JdbcEducationRepository implements EducationRepository {
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     private final RowMapper<Education> educationRowMapper = (rs, rowNum) -> {
         Education education = new Education();

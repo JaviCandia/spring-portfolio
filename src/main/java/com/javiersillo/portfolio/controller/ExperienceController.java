@@ -28,7 +28,7 @@ public class ExperienceController {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED) // <--- Perfecto, mantén esto
+    @ResponseStatus(HttpStatus.CREATED)
     public Experience create(@RequestBody Experience education) {
         return experienceService.save(education);
     }
