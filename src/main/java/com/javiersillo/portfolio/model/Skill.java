@@ -26,5 +26,6 @@ public class Skill {
     @NotBlank(message = "El icono no puede estar vacío")
     private String iconClass;
 
+    // la validación de la clave foránea se hace en el servicio
     private Long personalInfoId;
 }
